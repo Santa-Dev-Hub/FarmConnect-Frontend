@@ -24,7 +24,7 @@ function ListEquipment({ token }) {
 
     try {
       const response = await axios.post(
-        'http://localhost:5000/api/equipment/list',
+        'process.env.REACT_APP_API_URL/api/equipment/list',
         formData,
         { headers: { 'Authorization': `Bearer ${token}` } }
       );

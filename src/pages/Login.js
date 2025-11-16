@@ -30,7 +30,7 @@ function Login({ onLogin }) {
         : { phone: formData.phone, password: formData.password };
 
       const response = await axios.post(
-        `http://localhost:5000${endpoint}`,
+        `${process.env.REACT_APP_API_URL}/auth/login`,
         payload,
         { headers: { 'Content-Type': 'application/json' } }
       );

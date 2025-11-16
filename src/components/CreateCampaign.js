@@ -24,7 +24,7 @@ function CreateCampaign({ token }) {
 
     try {
       const response = await axios.post(
-        'http://localhost:5000/api/ads/campaign',
+        'process.env.REACT_APP_API_URL/api/ads/campaign',
         formData,
         { headers: { 'Authorization': `Bearer ${token}` } }
       );
@@ -49,7 +49,7 @@ function CreateCampaign({ token }) {
   const getTargetAudience = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/ads/target-audience?target_role=${formData.target_role}`
+        `process.env.REACT_APP_API_URL/api/ads/target-audience?target_role=${formData.target_role}`
       );
 
       if (response.data.success) {

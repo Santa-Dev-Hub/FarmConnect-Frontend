@@ -16,7 +16,7 @@ function EquipmentBrowser({ token }) {
 
     try {
       const response = await axios.get(
-        'http://localhost:5000/api/equipment/nearby?lat=28.7041&lng=77.1025',
+        'process.env.REACT_APP_API_URL/api/equipment/nearby?lat=28.7041&lng=77.1025',
         { headers: { 'Authorization': `Bearer ${token}` } }
       );
 

@@ -24,7 +24,7 @@ function PostAvailability({ token }) {
 
     try {
       const response = await axios.post(
-        'http://localhost:5000/api/labour/post-availability',
+        'process.env.REACT_APP_API_URL/api/labour/post-availability',
         formData,
         { headers: { 'Authorization': `Bearer ${token}` } }
       );

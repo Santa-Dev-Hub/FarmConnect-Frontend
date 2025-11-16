@@ -26,7 +26,7 @@ function PostJob({ token }) {
 
     try {
       const response = await axios.post(
-        'http://localhost:5000/api/labour/post-job',
+        'process.env.REACT_APP_API_URL/api/labour/post-job',
         formData,
         { headers: { 'Authorization': `Bearer ${token}` } }
       );
