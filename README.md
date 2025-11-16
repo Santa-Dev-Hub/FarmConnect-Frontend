@@ -1,70 +1,141 @@
-# Getting Started with Create React App
+# 🚜 FarmConnect
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+FarmConnect is a full-stack web application connecting farmers to workers, equipment, and advertisements in the agriculture ecosystem. It consists of:
 
-## Available Scripts
+- ⚙️ **Backend:** Node.js + Express + PostgreSQL REST API deployed on Railway.
+- 🌐 **Frontend:** React.js web app deployed on Vercel.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## 📋 Table of Contents
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- [✨ Features](#-features)
+- [🛠 Technologies](#-technologies)
+- [⚡ Setup & Installation](#-setup--installation)
+  - [Backend Setup](#backend-setup)
+  - [Frontend Setup](#frontend-setup)
+- [🔑 Environment Variables](#-environment-variables)
+- [🗄 Database Schema](#-database-schema)
+- [🚀 Deployment](#-deployment)
+- [🎯 Usage](#-usage)
+- [🛠 Troubleshooting](#-troubleshooting)
+- [📜 License](#-license)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## ✨ Features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- 👩‍🌾 User registration and authentication (farmers, workers, and companies)
+- 📋 Posting and browsing jobs and worker availabilities
+- 🚜 Equipment rental and bookings
+- 🤝 Matching workers to jobs
+- 📢 Advertisement campaigns targeted by user roles
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🛠 Technologies
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Backend:** Node.js, Express, PostgreSQL, JWT, bcrypt
+- **Frontend:** React.js, Axios, React Router
+- **Deployment:** Railway (backend + database), Vercel (frontend)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## ⚡ Setup & Installation
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Backend Setup
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Clone the repo and navigate to backend folder:
+   
+git clone <repo-url>
+cd backend
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+2. Install dependencies:
+ npm install
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+3. Create `.env` file with:
+4. PORT=5000
+DATABASE_URL=postgresql://postgres:<password>@<host>:<port>/<database>
+JWT_SECRET=your_jwt_secret_key
+NODE_ENV=development
+TZ=Asia/Kolkata # Optional: fix timezone errors
+4. Create tables via migrations or manually run schema SQL.
+5. Start backend server:
+   npm run start
+---
 
-## Learn More
+### Frontend Setup
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. Navigate to frontend folder:
+cd frontend
+2. Install dependencies:
+npm install
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+3. Create a `.env.local` file:
+REACT_APP_API_URL=https://your-backend-production-url/api
+REACT_APP_SOCKET_URL=https://your-backend-production-url
 
-### Code Splitting
+5. Start React dev server:
+npm start
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+## 🔑 Environment Variables
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+| Variable Name           | Description                                  |
+|------------------------|----------------------------------------------|
+| PORT                   | Backend server port                          |
+| DATABASE_URL           | PostgreSQL connection string                 |
+| JWT_SECRET             | Secret key for JWT                           |
+| NODE_ENV               | Environment (development/production)        |
+| TZ                     | Timezone (Asia/Kolkata recommended)         |
+| REACT_APP_API_URL       | Frontend URL for backend API                 |
+| REACT_APP_SOCKET_URL    | Frontend URL for websocket                    |
 
-### Making a Progressive Web App
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 🗄 Database Schema
 
-### Advanced Configuration
+- **users**: user info with roles and location
+- **jobs**: farmer posted jobs
+- **worker_availability**: worker availability
+- **equipment**: rentable farm equipment
+- **bookings**: equipment rentals
+- **matches**: job-worker matches
+- **ads**: advertisement campaigns
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+---
 
-### Deployment
+## 🚀 Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- Backend + PostgreSQL on Railway
+- Frontend on Vercel connected via environment variables
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 🎯 Usage
+
+- Register as farmer, worker, or company
+- Post jobs, set availability, browse/book equipment
+- Manage ads and matches on dashboard
+
+---
+
+## 🛠 Troubleshooting
+
+- **relation "users" does not exist:** Create tables on Railway database, not local.
+- **Invalid credentials:** Ensure registrations save users with hashed passwords.
+- **TimeZone error:** Set TZ=Asia/Kolkata in Railway backend environment variables.
+- **Connection errors:** Check `REACT_APP_API_URL` points to Railway backend URL.
+- Use Railway logs for backend errors diagnostics.
+
+---
+
+## 📜 License
+
+Its free to use bro
+
+---
+
+Made with 🚀 by Santanu Pal
+
